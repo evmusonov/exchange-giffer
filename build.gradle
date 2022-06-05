@@ -1,0 +1,33 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.0'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.exchange'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation group: 'io.github.openfeign', name: 'feign-okhttp', version: '11.8'
+	implementation group: 'io.github.openfeign', name: 'feign-jackson', version: '11.8'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2', version: '2.7.0'
+	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+}
+
+configurations {
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
