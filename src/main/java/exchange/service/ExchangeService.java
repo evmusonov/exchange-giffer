@@ -23,9 +23,8 @@ public class ExchangeService {
         exchangeRequestDTO.setSymbols(formattedCurrencyCode);
 
         try {
-            CurrencyRatesDTO a = exchangeRatesClient.getLatestRates(exchangeRequestDTO);
             CurrencyRatesDTO latestRatesDTO = Optional.ofNullable(
-                            a)
+                exchangeRatesClient.getLatestRates(exchangeRequestDTO))
                 .orElseThrow(() -> new NotFoundException("Валютная пара не найдена"));
 
             if (latestRatesDTO.getRates().containsKey(formattedCurrencyCode)) {

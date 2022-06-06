@@ -15,7 +15,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.Optional;
 
 @SpringBootTest
 public class ExchangeServiceTests {
@@ -30,7 +29,7 @@ public class ExchangeServiceTests {
     void getCurrentCurrencyRate() {
         // act
         Mockito
-            .when(exchangeRatesClient.getLatestRates(Mockito.mock(ExchangeRequestDTO.class)))
+            .when(exchangeRatesClient.getLatestRates(Mockito.any(ExchangeRequestDTO.class)))
             .thenReturn(new CurrencyRatesDTO(
                 0L,
                 ApplicationConfig.BASE_CURRENCY,
@@ -51,15 +50,14 @@ public class ExchangeServiceTests {
     void getCurrencyRateByDate() {
         // act
         Mockito
-            .doReturn(Optional.of(new CurrencyRatesDTO(
-                0L,
-                ApplicationConfig.BASE_CURRENCY,
-                new HashMap<>() {{
-                    put(currencyCode, expectedRate);
-                }}
-            )))
-            .when(exchangeRatesClient)
-            .getRatesByDate(Mockito.anyString(), Mockito.mock(ExchangeRequestDTO.class));
+                .when(exchangeRatesClient.getRatesByDate(Mockito.anyString(), Mockito.any(ExchangeRequestDTO.class)))
+                .thenReturn(new CurrencyRatesDTO(
+                        0L,
+                        ApplicationConfig.BASE_CURRENCY,
+                        new HashMap<>() {{
+                            put(currencyCode, expectedRate);
+                        }}
+                ));
         float prevRate = exchangeService.getCurrencyRateByDate(
                 currencyCode,
                 LocalDate.now().minusDays(1)

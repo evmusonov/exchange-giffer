@@ -1,20 +1,23 @@
 package exchange.dto.request;
 
+import feign.Param;
+
 public class GifRequestDTO {
-    private String api_key;
+    private String apiKey;
     private String tag;
 
     public GifRequestDTO(String apiKey, String tag) {
-        this.api_key = apiKey;
+        this.apiKey = apiKey;
         this.tag = tag;
     }
 
+    @Param("api_key")
     public String getApiKey() {
-        return api_key;
+        return apiKey;
     }
 
     public void setApiKey(String apiKey) {
-        this.api_key = apiKey;
+        this.apiKey = apiKey;
     }
 
     public String getTag() {

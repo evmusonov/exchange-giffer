@@ -10,10 +10,12 @@ import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import feign.okhttp.OkHttpClient;
 import feign.querymap.BeanQueryMapEncoder;
+import feign.querymap.FieldQueryMapEncoder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class BeanConfig {
@@ -43,6 +45,7 @@ public class BeanConfig {
     }
 
     @Bean
+    @Scope("prototype")
     public ExchangeRequestDTO exchangeRequestDTO() {
         return new ExchangeRequestDTO(
             ApplicationConfig.EXCHANGE_APP_ID,
@@ -54,6 +57,7 @@ public class BeanConfig {
     }
 
     @Bean
+    @Scope("prototype")
     public GifRequestDTO gifRequestDTO() {
         return new GifRequestDTO(
                 ApplicationConfig.GIF_APP_ID,

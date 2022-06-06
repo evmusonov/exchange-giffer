@@ -1,27 +1,29 @@
 package exchange.dto.request;
 
+import feign.Param;
+
 public class ExchangeRequestDTO {
-    private String app_id;
+    private String appId;
     private String base;
     private String symbols;
-    private boolean prettyprint;
-    private boolean show_alternative;
+    private boolean prettyPrint;
+    private boolean showAlternative;
 
     public ExchangeRequestDTO(String appId, String base, String symbols, boolean prettyPrint, boolean showAlternative) {
-        this.app_id = appId;
+        this.appId = appId;
         this.base = base;
         this.symbols = symbols;
-        this.prettyprint = prettyPrint;
-        this.show_alternative = showAlternative;
+        this.prettyPrint = prettyPrint;
+        this.showAlternative = showAlternative;
     }
 
-
-    public String getApp_id() {
-        return app_id;
+    @Param("app_id")
+    public String getAppId() {
+        return appId;
     }
 
-    public void setApp_id(String appId) {
-        this.app_id = appId;
+    public void setAppId(String appId) {
+        this.appId = appId;
     }
 
     public String getBase() {
@@ -40,19 +42,21 @@ public class ExchangeRequestDTO {
         this.symbols = symbols;
     }
 
-    public boolean getPrettyprint() {
-        return prettyprint;
+    @Param("prettyprint")
+    public boolean getPrettyPrint() {
+        return prettyPrint;
     }
 
-    public void setPrettyprint(boolean prettyPrint) {
-        this.prettyprint = prettyPrint;
+    public void setPrettyPrint(boolean prettyPrint) {
+        this.prettyPrint = prettyPrint;
     }
 
-    public boolean getShow_alternative() {
-        return show_alternative;
+    @Param("show_alternative")
+    public boolean getShowAlternative() {
+        return showAlternative;
     }
 
-    public void setShow_alternative(boolean showAlternative) {
-        this.show_alternative = showAlternative;
+    public void setShowAlternative(boolean showAlternative) {
+        this.showAlternative = showAlternative;
     }
 }

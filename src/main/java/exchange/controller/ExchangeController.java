@@ -30,7 +30,7 @@ public class ExchangeController {
     @GetMapping(
         produces = MediaType.IMAGE_GIF_VALUE
     )
-    public byte[] get(@RequestParam(defaultValue = "RUB") String currencyCode) {
+    public byte[] get(@RequestParam(name = "currency", defaultValue = "RUB") String currencyCode) {
         try {
             float currentCurrencyRate = exchangeService.getCurrentCurrencyRate(currencyCode);
             float previousCurrencyRate = exchangeService.

@@ -13,14 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import java.util.HashMap;
-
 @SpringBootTest
 public class GifServiceTests {
     @Autowired
     private GifService gifService;
-    @Autowired
-    private GifRequestDTO gifRequestDTO;
     @MockBean
     private GifClient gifClient;
 
@@ -31,9 +27,8 @@ public class GifServiceTests {
 
         // act
         Mockito
-            .doReturn(new GifDTO(new GifDataDTO(gifID)))
-            .when(gifClient)
-            .getRandomGif(gifRequestDTO);
+            .when(gifClient.getRandomGif(Mockito.any(GifRequestDTO.class)))
+            .thenReturn(new GifDTO(new GifDataDTO(gifID)));
         String randomGifURL = gifService.getGifURLDependsOnCurrencyRate(
             60f,
             59f
@@ -42,7 +37,7 @@ public class GifServiceTests {
         // assert
         Mockito
             .verify(gifClient, Mockito.times(1))
-            .getRandomGif(gifRequestDTO);
+            .getRandomGif(ArgumentMatchers.any(GifRequestDTO.class));
         Assertions.assertEquals(gifService.getCorrectURL(gifID), randomGifURL);
     }
 }
