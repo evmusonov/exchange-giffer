@@ -18,7 +18,7 @@ docker run -d -it -p 8080:8080 --name giffer giffer
 All application logs you can see in the `application.log` file.
 
 ## Usage
-Default currency is `RUB`. If you want to change it use query paramater `currency`.
+Base currency is `USD`. Default currency is `RUB`. If you want to change it use query paramater `currency`.
 ```
 http://localhost:8080?currency=eur
 ```
