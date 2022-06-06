@@ -1,5 +1,5 @@
 ## Exchange Giffer
-The service shows a gif image (a rate is up or down) depends on a currency rate using external APIs (https://docs.openexchangerates.org/ and https://developers.giphy.com/docs/api#quick-start-guide).
+The service shows a gif image (a rate is up or down) depends on a difference of currency rates (today's and yestarday's) using external APIs (https://docs.openexchangerates.org/ and https://developers.giphy.com/docs/api#quick-start-guide).
 
 ## Setup
 Make sure you have Docker installed on your machine.
